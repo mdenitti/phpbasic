@@ -123,6 +123,42 @@ foreach ($favoriteDishesAssocMulti as $dish => $ingredients) {
     echo '<br>';
 }
 
+// function are always preceded with function!
+// named return function 
+function calculate($a,$b) {
+    return $a + $b;
+}
+
+// void function - no return
+function calculateVoid($a,$b) {
+    echo $a + $b;
+}
+
+$myResultOfCalculate = calculate(6,5);
+calculateVoid(4,5);
+
+// Stel pdf generator functie
+function makePDF ($name,$email,$tel) {
+    echo '<h1>PDF document registration</h1>';
+    echo '<h3>'.$name.'</h3>';
+    echo '<h3>'.$email.'</h3>';
+    echo '<h3>'.$tel.'</h3>';   
+};
+
+makePDF ($databasename,'XxhQw@example.com','123456789');
+
+function calcTotaal ($amount, $vat=false) {
+// the second argument is optional becuz
+// the default value is false
+    if ($vat) {
+        $amountvat = ($amount * $vat)/100;
+        return $amountvat + $amount;
+    } else {
+        return $amount;
+    }
+}
+
+echo calcTotaal(100, 21);
 
 
     ?>
