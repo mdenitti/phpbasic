@@ -158,9 +158,16 @@ function calcTotaal ($amount, $vat=false) {
     }
 }
 
-echo calcTotaal(100, 21);
+echo calcTotaal(100, 21);?>
+
+<form action="register.php" method="post">
+    <input type="text" name="name">
+    <input type="text" name="email">
+    <input type="text" name="tel">
+    <input type="submit" value="submit">
+    <input type="reset" value="reset">
+</form> 
 
 
-    ?>
 </body>
 </html>
