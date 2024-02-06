@@ -15,6 +15,7 @@
             <div class="col-md">
 
             <?php 
+                // example URL: http://localhost:8000/index.php?name=Tante%20Frieda&email=frieda@mail.com&tel=028309283098
                 print_r($_GET);
             ?>
 
