@@ -29,6 +29,7 @@
                     <input class="form-control mt-2" type="text" name="tel"  value = "<?php if (isset($_GET['tel'])) { echo $_GET['tel']; }?>" placeholder="Geef uw telefoon">
                     <hr>
                     <?php 
+                    // locaties undefined, position does matter ! print_r ($locaties);
                     $locations = ["Genk - Thailand", "Hasselt - Griekenland", "Zonhoven - Mexico", "Oudsbergen - Italië", "Vlaardingen - Nederland"];
                     print_r($locations);
                     ?>
