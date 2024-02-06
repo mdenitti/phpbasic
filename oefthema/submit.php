@@ -44,6 +44,7 @@
             </ul>
 
             <a class='btn btn-primary' href="index.php">Nieuwe inschrijving</a>
+            <a class='btn btn-dark' href="print.php">Inschrijving afdrukken</a>
         </div>
     </div>
 </div>
