@@ -29,18 +29,24 @@
                     <input class="form-control mt-2" type="text" name="tel"  value = "<?php if (isset($_GET['tel'])) { echo $_GET['tel']; }?>" placeholder="Geef uw telefoon">
                     <hr>
                     <?php 
-                    // locaties undefined, position does matter ! print_r ($locaties);
                     $locations = ["Genk - Thailand", "Hasselt - Griekenland", "Zonhoven - Mexico", "Oudsbergen - Italië", "Vlaardingen - Nederland"];
-                    print_r($locations);
+
+                    if (!isset($_GET['locatie'])) {
+                        // locaties undefined, position does matter ! print_r ($locaties);
+                        // print_r($locations);
+                        echo "<select class='form-select mt-2' name='locaties'>";
+                        foreach ($locations as $location) {
+                            echo "<option value='$location'>$location</option>";
+                        }
+                        echo " </select>";
+                        //echo $locations[0];
+                    } else {
+                        // locaties defined
+                        $customLocation = $locations[$_GET['locatie']];
+                        echo "<input type='hidden' name='locaties' value = '$customLocation'>";
+                        echo "<p>U gaat naar: $customLocation</p>";
+                    }
                     ?>
-                        <select class="form-select mt-2" name="locaties">
-                            <?php 
-                                foreach ($locations as $location) {
-                                    echo "<option value='$location'>$location</option>";
-                                }
-                            ?>
-                        </select>
-                    
                     <input class="btn btn-primary mt-2" type="submit" name="submit">
                     <input class="btn btn-danger mt-2" type="reset" name="reset">
                 </form>
