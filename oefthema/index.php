@@ -1,3 +1,4 @@
+<?php include 'global.php'; ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,6 +22,7 @@
 
             <h1>Hello, Themadag</h1>
                 <p>
+                <?php showCurrentDate(); ?>
                 <h3>Bereid je voor op een onvergetelijk avontuur boordevol ontdekkingen en verrassingen.</h3> Of je nu gepassioneerd bent door exotische bestemmingen, culturele hoogtepunten of avontuurlijke reizen, onze themadag belooft een bron van inspiratie te zijn voor jouw volgende reis. Schrijf je nu in en maak je klaar om meegevoerd te worden op een reis door de fascinerende wereld van reizen en avontuur!
                 </p>
                 <form action="submit.php" method="post">
