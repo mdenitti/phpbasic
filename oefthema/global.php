@@ -13,3 +13,4 @@ function showCurrentDate() {
     // Output the formatted date in Dutch notation
     echo "$dayOfWeek, $dayOfMonth $month $year";
 }
+

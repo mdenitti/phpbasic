@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php include 'global.php'; ?>
 <!doctype html>
 <html lang="en">
   <head>
