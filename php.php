@@ -43,7 +43,7 @@
     echo $myArray[0]; // return a
     echo $myArray[1]; // return b
     echo $myArray[2]; // return c
-
+    // 0 a value... NULL -> void
     // loop the array with while loop
     $i = 0;
     while ($i < 3) {
@@ -101,6 +101,7 @@ $favoriteDishesAssoc = [
 echo $favoriteDishesAssoc["Cevapi"];
 
 // print_r($favoriteDishesAssoc);
+// var_dump($favoriteDishesAssoc); // same as print_r but with more verbose
 
 // iterate the assoc array with a foreach loop
 echo "<ul>";
