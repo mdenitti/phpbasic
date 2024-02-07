@@ -20,4 +20,11 @@ if (!$conn) {
     exit;
 }
 
-// print_r($conn);
+//print_r($conn);
+
+function store ($name, $email, $tel, $locaties) {
+    global $conn;
+    $currentdate = date("Y-m-d H:i:s");
+    $sql = "INSERT INTO registrations VALUES (NULL,'$name', '$email', '$tel', '$locaties','$currentdate')";
+    $conn->query($sql);
+}

@@ -23,6 +23,7 @@
     $_SESSION['tel'] = $tel;
     $_SESSION['locaties'] = $locaties;
     
+    
 
     function saveStringToFile($name, $email, $tel, $locaties) {
         // open or create a new file and append to it
@@ -36,7 +37,8 @@
     }
     
     saveStringToFile($name, $email, $tel, $locaties);
-
+    store ($name, $email, $tel, $locaties);
+    
    ?>
   <div class="container">
        <div class="row">
