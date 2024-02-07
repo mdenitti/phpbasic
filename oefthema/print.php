@@ -9,39 +9,19 @@
   </head>
   <body>
   <?php 
-    // print_r($_POST);
-    // assign values to variables from POST
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $tel = $_POST['tel'];
-    $locaties = $_POST['locaties'];
+   
+    $name = $_SESSION['name'];
+    $email = $_SESSION['email'];
+    $tel = $_SESSION['tel'];
+    $locaties = $_SESSION['locaties'];
 
-    // make some sessions of our posted data
-    $_SESSION['name'] = $name;
-    $_SESSION['email'] = $email;
-    $_SESSION['tel'] = $tel;
-    $_SESSION['locaties'] = $locaties;
-    
-
-    function saveStringToFile($name, $email, $tel, $locaties) {
-        // open or create a new file and append to it
-        $file = fopen("bookings.csv", "a");
-        // provice a prefered format for the date object
-        $currendate = date('Y-m-d H:i:s');
-        // write to file and close... use "\r\n" for new line
-        $string = $currendate . "," . $name . "," . $email . "," . $tel . "," . $locaties . "\r";
-        fwrite($file, $string);
-        fclose($file);
-    }
-    
-    saveStringToFile($name, $email, $tel, $locaties);
 
    ?>
   <div class="container">
        <div class="row">
             <div class="col-md">
-
-            <h1>Bedankt voor uw inschrijving, <?php echo $name; ?></h1>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=syntrapxl.be" alt="logo" width="200">
+            <h1>Ticket voor, <?php echo $name; ?></h1>
             <h3>Wij verwachten u in <?php echo $locaties; ?></h3>
             <p>Hier is de gegevens die u heeft ingevuld:</p>
             <ul>
@@ -51,8 +31,8 @@
                 <li>Locatie: <?php echo $locaties; ?></li>
             </ul>
 
-            <a class='btn btn-primary' href="index.php">Nieuwe inschrijving</a>
-            <a class='btn btn-dark' href="print.php">Inschrijving afdrukken</a>
+            <a class='btn btn-primary' onclick="window.print();">Afdrukken</a>
+           
         </div>
     </div>
 </div>
