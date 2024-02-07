@@ -14,8 +14,11 @@
     // PascalCase
     // snake_case
     // kebab-case
-    $worldHello = 'Hello World';
-    echo '<hr>';
+    $extra = 'extra'
+    // concatenation
+    $worldHello = 'Hello '.$extra.' World';
+    // use single quotes in HTML that echos the snippet
+    echo "<hr class='myClass'>";
     // The double quotes evaluate the variable
     echo "This is my world: $worldHello";
     echo '<hr>';
