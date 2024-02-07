@@ -30,8 +30,13 @@
     $a = 4;
     if ($a == 3) {
         echo 'a is 3';
-    } else {
-        echo 'a is niet gelijk 3 maar '.$a;
+    } elseif ($a == 4) {
+        echo 'a is 4';
+    } elseif ($a == 5) {
+        echo 'a is 5';
+    } 
+    else {
+        echo 'a is not 3 or 4';
     }
 
     $myArray = ['a', 'b', 'c'];
