@@ -41,7 +41,8 @@
                     tdays.status,
                     tdays.date,
                     locations.`name` AS locname,
-                    locations.amount
+                    locations.amount,
+                    locations.amount - (SELECT COUNT(*) FROM registrations WHERE registrations.tday_id = tdays.id) AS freeplace
                     FROM tdays
                     JOIN locations ON locations.id = tdays.location_id
                     WHERE tdays.date >= CURDATE()
@@ -60,7 +61,9 @@
                         foreach ($locations as $location) {
                             $localdate = convertToBelgianFormat($location['date']);
                             // Replace value of the select by tday.id
-                            echo "<option value='$location[id]'>$localdate - $location[themename] - $location[locname] ($location[amount] plaatsen)</option>";
+                            if (!$location['freeplace'] == 0) {
+                             echo "<option value='$location[id]'>$localdate - $location[themename] - $location[locname] ($location[freeplace] van $location[amount] beschikbaar)</option>";
+                            }
                         }
                         echo " </select>";
                         //echo $locations[0];
