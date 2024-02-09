@@ -50,21 +50,16 @@
                     $locations = mysqli_query($conn, $sql);
                     print_r($locations);
 
-                    
-                    // Replace value of the select by tday.id
-
-
-
                     //$locations = ["Genk - Thailand", "Hasselt - Griekenland", "Zonhoven - Mexico", "Oudsbergen - Italië", "Vlaardingen - Nederland"];
-
                     
                     if (!isset($_GET['locatie'])) {
                         // locaties undefined, position does matter ! print_r ($locaties);
                         // print_r($locations);
-                        echo "<select class='form-select mt-2' name='locaties'>";
+                        echo "<select class='form-select mt-2' name='tday_id'>";
                         // Iterate tdays in select
                         foreach ($locations as $location) {
                             $localdate = convertToBelgianFormat($location['date']);
+                            // Replace value of the select by tday.id
                             echo "<option value='$location[id]'>$localdate - $location[themename] - $location[locname] ($location[amount] plaatsen)</option>";
                         }
                         echo " </select>";

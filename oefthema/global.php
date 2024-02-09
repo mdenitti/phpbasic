@@ -22,10 +22,10 @@ if (!$conn) {
 
 //print_r($conn);
 
-function store ($name, $email, $tel, $locaties) {
+function store ($name, $email, $tel, $tday_id) {
     global $conn;
     $currentdate = date("Y-m-d H:i:s");
-    $sql = "INSERT INTO registrations VALUES (NULL,'$name', '$email', '$tel', '$locaties','$currentdate')";
+    $sql = "INSERT INTO registrations VALUES (NULL,'$name', '$email', '$tel', '$tday_id','$currentdate')";
     $conn->query($sql);
 }
 
