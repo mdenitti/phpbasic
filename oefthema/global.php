@@ -28,3 +28,15 @@ function store ($name, $email, $tel, $locaties) {
     $sql = "INSERT INTO registrations VALUES (NULL,'$name', '$email', '$tel', '$locaties','$currentdate')";
     $conn->query($sql);
 }
+
+// create a function to convert the mysql date to a Belgian format
+function convertToBelgianFormat($mysqlDate) {
+    // Convert the MySQL date to a timestamp
+    $timestamp = strtotime($mysqlDate);
+    
+    // Format the timestamp in Belgian format
+    $belgianDate = date('d-m-Y', $timestamp);
+    
+    // Return the Belgian formatted date
+    return $belgianDate;
+}

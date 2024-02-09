@@ -31,14 +31,39 @@
                     <input class="form-control mt-2" type="text" name="tel"  value = "<?php if (isset($_GET['tel'])) { echo $_GET['tel']; }?>" placeholder="Geef uw telefoon">
                     <hr>
                     <?php 
-                    $locations = ["Genk - Thailand", "Hasselt - Griekenland", "Zonhoven - Mexico", "Oudsbergen - Italië", "Vlaardingen - Nederland"];
 
+                    // Remove hardcoded array *
+
+                    // Create query to retrieve tdays and Locations (JOIN)
+                    $sql = "SELECT
+                    tdays.`name` AS themename,
+                    tdays.id,
+                    tdays.status,
+                    tdays.date,
+                    locations.`name` AS locname,
+                    locations.amount
+                    FROM tdays
+                    JOIN locations ON locations.id = tdays.location_id";
+
+                    $locations = mysqli_query($conn, $sql);
+                    print_r($locations);
+
+                    
+                    // Replace value of the select by tday.id
+
+
+
+                    //$locations = ["Genk - Thailand", "Hasselt - Griekenland", "Zonhoven - Mexico", "Oudsbergen - Italië", "Vlaardingen - Nederland"];
+
+                    
                     if (!isset($_GET['locatie'])) {
                         // locaties undefined, position does matter ! print_r ($locaties);
                         // print_r($locations);
                         echo "<select class='form-select mt-2' name='locaties'>";
+                        // Iterate tdays in select
                         foreach ($locations as $location) {
-                            echo "<option value='$location'>$location</option>";
+                            $localdate = convertToBelgianFormat($location['date']);
+                            echo "<option value='$location[id]'>$localdate - $location[themename] - $location[locname] ($location[amount] plaatsen)</option>";
                         }
                         echo " </select>";
                         //echo $locations[0];
