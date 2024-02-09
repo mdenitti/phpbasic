@@ -23,6 +23,8 @@ if (!$conn) {
 //print_r($conn);
 
 function store ($name, $email, $tel, $tday_id) {
+    // check if mail adres is already present for the specific themeday
+    // ... to be developed! ;)
     global $conn;
     $currentdate = date("Y-m-d H:i:s");
     $sql = "INSERT INTO registrations VALUES (NULL,'$name', '$email', '$tel', '$tday_id','$currentdate')";
