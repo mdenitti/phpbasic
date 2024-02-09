@@ -43,7 +43,9 @@
                     locations.`name` AS locname,
                     locations.amount
                     FROM tdays
-                    JOIN locations ON locations.id = tdays.location_id";
+                    JOIN locations ON locations.id = tdays.location_id
+                    WHERE tdays.date >= CURDATE()
+                    ";
 
                     $locations = mysqli_query($conn, $sql);
                     print_r($locations);
