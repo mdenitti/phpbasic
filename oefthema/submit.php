@@ -54,6 +54,7 @@
 
             <a class='btn btn-primary' href="index.php">Nieuwe inschrijving</a>
             <a class='btn btn-dark' href="print.php">Inschrijving afdrukken</a>
+            <a class='btn btn-danger' href="exportpdf.php">Export naar pdf</a>
         </div>
     </div>
 </div>
