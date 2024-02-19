@@ -61,7 +61,7 @@
                         foreach ($locations as $location) {
                             $localdate = convertToBelgianFormat($location['date']);
                             // Replace value of the select by tday.id
-                            if (!$location['freeplace'] == 0) {
+                            if ($location['freeplace'] > 0) {
                              echo "<option value='$location[id]'>$localdate - $location[themename] - $location[locname] ($location[freeplace] van $location[amount] beschikbaar)</option>";
                             }
                         }
