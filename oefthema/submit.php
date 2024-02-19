@@ -48,6 +48,8 @@
 
     // get themadag name from database based on tday_id;
     $tday_name = get_tday_name($tday_id);
+    // store the themaday name in session
+    $_SESSION['tday_name'] = $tday_name;
 
    ?>
   <div class="container">
