@@ -8,24 +8,7 @@
 <body>
 
     <?php 
-    //PHP comment
-    // echo "Hello World!";
-    // camelCase
-    // PascalCase
-    // snake_case
-    // kebab-case
-    $extra = 'extra'
-    // concatenation
-    $worldHello = 'Hello '.$extra.' World';
-    // use single quotes in HTML that echos the snippet
-    echo "<hr class='myClass'>";
-    // The double quotes evaluate the variable
-    echo "This is my world: $worldHello";
-    echo '<hr>';
-    echo 'This is my world: $worldHello';
-    echo '<hr>';
-    echo 'This is my world: '.$worldHello; // consumes less resources
-    echo '<hr>';
+    
     //
     $a = 4;
     if ($a == 3) {
