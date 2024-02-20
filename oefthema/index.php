@@ -1,4 +1,19 @@
 <?php include 'global.php'; ?>
+<?php
+session_start();
+
+// Check if the user is logged in
+$is_logged_in = isset($_SESSION['user_id']);
+
+// Handle logout
+if (isset($_POST['logout'])) {
+    // Destroy the session and redirect to the login page (or any other page)
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,11 +35,24 @@
                 print_r($_GET);
             ?>
 
-            <h1>Hello, Themadag</h1>
-                <p>
-                <?php showCurrentDate(); ?>
-                <h3>Bereid je voor op een onvergetelijk avontuur boordevol ontdekkingen en verrassingen.</h3> Of je nu gepassioneerd bent door exotische bestemmingen, culturele hoogtepunten of avontuurlijke reizen, onze themadag belooft een bron van inspiratie te zijn voor jouw volgende reis. Schrijf je nu in en maak je klaar om meegevoerd te worden op een reis door de fascinerende wereld van reizen en avontuur!
-                </p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md">
+                        <?php if (!$is_logged_in): ?>
+                            <a href="register.php" class="btn btn-primary mt-2">Register</a>
+                            <a href="login.php" class="btn btn-primary mt-2">Login</a>
+                        <?php else: ?>
+                            <form method="post">
+                                <button type="submit" name="logout" class="btn btn-danger mt-2">Logout</button>
+                            </form>
+                        <?php endif; ?>
+
+                        <h1>Hello, Themadag</h1>
+                        <p>
+                            <?php showCurrentDate(); ?>
+                            <h3>Bereid je voor op een onvergetelijk avontuur boordevol ontdekkingen en verrassingen.</h3>
+                            Of je nu gepassioneerd bent door exotische bestemmingen, culturele hoogtepunten of avontuurlijke reizen, onze themadag belooft een bron van inspiratie te zijn voor jouw volgende reis. Schrijf je nu in en maak je klaar om meegevoerd te worden op een reis door de fascinerende wereld van reizen en avontuur!
+                        </p>
                 <form action="submit.php" method="post">
                     <input class="form-control mt-2" type="text" name="name" value = "<?php if(isset($_GET['name'])) { echo $_GET['name']; }?>" placeholder="Geef uw naam">
                     <input class="form-control mt-2" type="email" name="email" value = "<?php if (isset($_GET['email'])) { echo $_GET['email'];}?>" placeholder="Geef uw email">
