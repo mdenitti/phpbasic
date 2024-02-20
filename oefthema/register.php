@@ -98,19 +98,7 @@
       </form>
    </div>
 
-   <script>
-      // Initialize toastr
-      $(document).ready(function() {
-         toastr.options = {
-            "closeButton": true,
-            "positionClass": "toast-top-right",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "progressBar": true,
-            "preventDuplicates": true
-         }
-      });
-   </script>
+
 </body>
 
 </html>

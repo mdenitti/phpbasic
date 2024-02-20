@@ -31,7 +31,9 @@ $stmt->close();
 if (password_verify($password, $hashed_password)) {
    $_SESSION['logged_in'] = true;
    $_SESSION['username'] = $username;
-   header('Location: index.php');
+   echo '<script>toastr.success("Login Successful!")</script>';
+   header('Location: index.php?login=success');
 } else {
-   header('Location: login.php?error=InvalidCredentials');
+   header('Location: login.php?error=Wrong+Username+or+Password');
+   echo '<script>toastr.error("Login Failed!")</script>';
 }
