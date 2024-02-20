@@ -25,7 +25,6 @@ $stmt = $conn->prepare($sql);
 // Bind Parameters (including new values)
 $stmt->bind_param("ssssi", $username, $email, $password, $registration_date, $status);
 
-
 // Basic Validation
 if (empty($_POST['username']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['password_confirm'])) {
    header('Location: register.php?error=All fields are required');
@@ -49,13 +48,15 @@ $sql = "INSERT INTO users (username, email, password, registration_date, status)
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssssi", $username, $email, $password, $registration_date, $status);
 
-
 if ($stmt->execute()) {
-   // Redirect on success
-   header('Location: login.php?success=Registration Successful');
+   // Successful registration or login
+   header('Location: login.php?registration=success');
+
+   echo '<script>toastr.success("Registration Successful!")</script>';
 } else {
-   // Redirect on error 
-   header('Location: register.php?error=Registration Failed');
+   // Error case
+   header('Location: register.php?error=Registration+Failed'); //  error message as needed
+   echo '<script>toastr.error("Registration Failed!")</script>';
 }
 
 $stmt->close();

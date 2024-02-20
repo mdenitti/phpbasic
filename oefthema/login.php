@@ -4,6 +4,13 @@
 <head>
    <title>Login Page</title>
    <link rel="stylesheet" type="text/css" href="style.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
    <style>
       /* General Styling */
       body {
@@ -64,6 +71,16 @@
 </head>
 
 <body>
+
+   <div id="notifications"></div>
+
+   <?php
+   // Check if a successful registration flag is present
+   if (isset($_GET['registration']) && $_GET['registration'] === 'success') {
+      echo '<script>toastr.success("Registration Successful!")</script>';
+   }
+   ?>
+
 
    <div class="container">
       <h1>Login</h1>
