@@ -95,7 +95,10 @@
          <input type="password" name="password_confirm" id="password_confirm" required><br><br>
 
          <button type="submit">Register</button>
+
       </form>
+
+      <p>Have an account? <a href="login.php">Login</a></p>
    </div>
 
 
