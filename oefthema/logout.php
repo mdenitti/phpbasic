@@ -6,5 +6,5 @@ session_destroy();
 unset($_SESSION['logged_in']);
 
 // Redirect to login page after logging out
-header('Location: login.php');
+header('Location: login.php?logout=success');
 exit;

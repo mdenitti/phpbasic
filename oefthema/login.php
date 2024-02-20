@@ -79,6 +79,10 @@
    if (isset($_GET['registration']) && $_GET['registration'] === 'success') {
       echo '<script>toastr.success("Registration Successful!")</script>';
    }
+
+   if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
+      echo '<script>toastr.info("Logout Successful!")</script>';
+   }
    ?>
 
 
