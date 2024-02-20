@@ -15,7 +15,7 @@ function showCurrentDate()
     echo "$dayOfWeek, $dayOfMonth $month $year";
 }
 
-$conn = mysqli_connect("localhost:3306", "mertcode", "", "themadag");
+$conn = mysqli_connect("localhost", "root", "welcome123", "themadag");
 if (!$conn) {
     echo "Connection failed: " . mysqli_connect_error();
     exit;
