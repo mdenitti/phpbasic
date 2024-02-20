@@ -1,36 +1,85 @@
 <?php include 'global.php'; ?>
+
+<?php
+session_start();
+
+// Redirect if not logged in
+if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+    header('Location: login.php');
+    exit; // Ensure redirection takes place
+}
+
+?>
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Themadag</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  </head>
-  <body>
-    
+    <style>
+        /* ... other styles ... */
+
+        .container .btn-outline-secondary {
+            position: relative;
+            /* Optionally allow positioning adjustment */
+            float: right;
+            /* Pushes the button to the right */
+            margin-top: 10px;
+            /* Adds top spacing for visual spacing */
+            color: #666;
+            /* A  neutral grey */
+            border-color: #666;
+        }
+
+        .container .btn-outline-secondary:hover {
+            background-color: #e8e8e8;
+            /* Light grey background on hover */
+            color: #333;
+            /* Darker text on hover */
+        }
+    </style>
+</head>
+
+<body>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <div class="container">
-       <div class="row">
+        <div class="row">
+            <div class="col-md">
+                <a href="logout.php" class="btn btn-outline-secondary">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
             <div class="col-md">
 
-            <?php 
+                <?php
                 // example URL: http://localhost:8000/index.php?name=Tante%20Frieda&email=frieda@mail.com&tel=028309283098
                 print_r($_GET);
-            ?>
+                ?>
 
-            <h1>Hello, Themadag</h1>
+                <h1>Hello, Themadag</h1>
                 <p>
-                <?php showCurrentDate(); ?>
+                    <?php showCurrentDate(); ?>
                 <h3>Bereid je voor op een onvergetelijk avontuur boordevol ontdekkingen en verrassingen.</h3> Of je nu gepassioneerd bent door exotische bestemmingen, culturele hoogtepunten of avontuurlijke reizen, onze themadag belooft een bron van inspiratie te zijn voor jouw volgende reis. Schrijf je nu in en maak je klaar om meegevoerd te worden op een reis door de fascinerende wereld van reizen en avontuur!
                 </p>
                 <form action="submit.php" method="post">
-                    <input class="form-control mt-2" type="text" name="name" value = "<?php if(isset($_GET['name'])) { echo $_GET['name']; }?>" placeholder="Geef uw naam">
-                    <input class="form-control mt-2" type="email" name="email" value = "<?php if (isset($_GET['email'])) { echo $_GET['email'];}?>" placeholder="Geef uw email">
-                    <input class="form-control mt-2" type="text" name="tel"  value = "<?php if (isset($_GET['tel'])) { echo $_GET['tel']; }?>" placeholder="Geef uw telefoon">
+                    <input class="form-control mt-2" type="text" name="name" value="<?php if (isset($_GET['name'])) {
+                                                                                        echo $_GET['name'];
+                                                                                    } ?>" placeholder="Geef uw naam">
+                    <input class="form-control mt-2" type="email" name="email" value="<?php if (isset($_GET['email'])) {
+                                                                                            echo $_GET['email'];
+                                                                                        } ?>" placeholder="Geef uw email">
+                    <input class="form-control mt-2" type="text" name="tel" value="<?php if (isset($_GET['tel'])) {
+                                                                                        echo $_GET['tel'];
+                                                                                    } ?>" placeholder="Geef uw telefoon">
                     <hr>
-                    <?php 
+                    <?php
 
                     // Remove hardcoded array *
 
@@ -52,7 +101,7 @@
                     print_r($locations);
 
                     //$locations = ["Genk - Thailand", "Hasselt - Griekenland", "Zonhoven - Mexico", "Oudsbergen - Italië", "Vlaardingen - Nederland"];
-                    
+
                     if (!isset($_GET['locatie'])) {
                         // locaties undefined, position does matter ! print_r ($locaties);
                         // print_r($locations);
@@ -62,7 +111,7 @@
                             $localdate = convertToBelgianFormat($location['date']);
                             // Replace value of the select by tday.id
                             if ($location['freeplace'] > 0) {
-                             echo "<option value='$location[id]'>$localdate - $location[themename] - $location[locname] ($location[freeplace] van $location[amount] beschikbaar)</option>";
+                                echo "<option value='$location[id]'>$localdate - $location[themename] - $location[locname] ($location[freeplace] van $location[amount] beschikbaar)</option>";
                             }
                         }
                         echo " </select>";
@@ -78,8 +127,9 @@
                     <input class="btn btn-danger mt-2" type="reset" name="reset">
                 </form>
             </div>
-       </div>
+        </div>
     </div>
 
 </body>
+
 </html>
