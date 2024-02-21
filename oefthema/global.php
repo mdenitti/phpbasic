@@ -42,3 +42,10 @@ function convertToBelgianFormat($mysqlDate) {
     // Return the Belgian formatted date
     return $belgianDate;
 }
+
+function checkLoggedIn() {
+    if (!isset($_SESSION['token'])) {
+        header('Location: login.php');
+        exit;
+    }
+}
