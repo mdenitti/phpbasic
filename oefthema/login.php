@@ -88,7 +88,7 @@ mysqli_close($conn);
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    Don't have an account? <a href="register.php">Register</a>
+                Don't have an account? <a href="register.php">Register</a> | <a href="forgot-password.php">Forgot Password?</a>
                 </div>
             </div>
             <?php 
