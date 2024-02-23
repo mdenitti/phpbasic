@@ -1,85 +1,54 @@
-<?php
-session_start();
-require 'global.php'; // Include file with the database connection settings
-
-// Process form data when the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get data from the form
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $status = 1; // Active user status
-    $date = date('Y-m-d H:i:s'); // Current date and time
-
-    // Check if a user with this email already exists
-    $sql = "SELECT id FROM users WHERE email = ?";
-    if ($stmt = mysqli_prepare($conn, $sql)) {
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_store_result($stmt);
-
-        if (mysqli_stmt_num_rows($stmt) == 0) {
-            // Email does not exist, proceed with registration
-            mysqli_stmt_close($stmt); // Close the previous query
-
-            // Hash the password
-            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-            // SQL query to insert data
-            $sql = "INSERT INTO users (name, email, password, status, date) VALUES (?, ?, ?, ?, ?)";
-            if ($stmt = mysqli_prepare($conn, $sql)) {
-                mysqli_stmt_bind_param($stmt, "sssds", $name, $email, $hashed_password, $status, $date);
-
-                // Execute the query
-                if (mysqli_stmt_execute($stmt)) {
-                    // Registration successful, redirect to the login page
-                    header("location: login.php");
-                    exit;
-                } else {
-                    echo "Something went wrong. Please try again.";
-                }
-            }
-            mysqli_stmt_close($stmt); // Close the query
-        } else {
-            // Email already exists, notify the user
-            $email_err = "An account with this email address already exists.";
-        }
-    }
-    mysqli_close($conn);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
-    <!-- Styles and scripts (if needed) -->
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <h2>Registration</h2>
-        <!-- Show error message if it exists -->
-        <?php if (!empty($email_err)) echo $email_err; ?>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div>
-                <label>Name:</label>
-                <input type="text" name="name" required>
-            </div>
-            <div>
-                <label>Email:</label>
-                <input type="email" name="email" required>
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type="password" name="password" required>
-            </div>
-            <div>
-                <input type="submit" value="Register">
-            </div>
-        </form>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Registration</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Show error message if it exists -->
+                    <?php if (!empty($email_err)): ?>
+                        <div class="alert alert-danger mb-3"><?php echo $email_err; ?></div>
+                    <?php endif; ?>
 
-    </div>    
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    Already have an account? <a href="login.php">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap Bundle JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </body>
 </html>
