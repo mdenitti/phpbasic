@@ -20,6 +20,19 @@ class Auto {
     }
 }
 
+class Person {
+    public $name;
+    public $age;
+    public function __construct($name, $age) {
+        $this->name = $name;
+        if ($age > 0) {
+            $this->age = $age;
+        }
+    }
+}
+
+$person = new Person("Alice", 25);
+
 // plain object intantiation
 $auto = new Auto;
 // accessible from outside with the public keyword in our class
